@@ -1,6 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TankAIController.h"
+#include "Engine/World.h"
+#include "GameFramework/Pawn.h"
+#include "GameFramework/PlayerController.h"
+
 
 void ATankAIController::BeginPlay()
 {
@@ -15,6 +19,16 @@ void ATankAIController::BeginPlay()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("AI Possesssing: %s"), *(ControlledTank->GetName()));
 	}
+
+	auto ThePlayersTank = GetPlayerTank();
+	if (!ThePlayersTank)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("AI can't find the player!"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("AI has located the player's tank! %s"), *(ThePlayersTank->GetName()));
+	}
 }
 
 ATank* ATankAIController::GetControlledTank() const
@@ -22,3 +36,9 @@ ATank* ATankAIController::GetControlledTank() const
 	return Cast<ATank>(GetPawn());
 }
 
+ATank* ATankAIController::GetPlayerTank() const
+{
+	auto PlayerPawn = GetWorld()->GetFirstPlayerController();
+	if (!PlayerPawn) { return nullptr; }
+	return Cast<ATank>(GetPawn());
+}
