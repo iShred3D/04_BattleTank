@@ -4,6 +4,7 @@
 #include "Public/Tank.h"
 #include "CoreMinimal.h"
 #include "AIController.h"
+#include "DrawDebugHelpers.h"
 #include "TankAIController.generated.h"
 
 /**
@@ -14,9 +15,13 @@ class BATTLETANK_API ATankAIController : public AAIController
 {
 	GENERATED_BODY()
 
+public:
+
 
 private:
-	virtual void BeginPlay() override;
+	void AimAtPlayer() const;
 	ATank* GetControlledTank() const;
 	ATank* GetPlayerTank() const;
+	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
 };

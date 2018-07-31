@@ -38,8 +38,8 @@ void ATankPlayerController_New::AimTowardsCrosshair()
 	FVector HitLocation;// OUT parameter
 	if (GetSightRayHitLocation(HitLocation)) // side effect, is ray-trace
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Hit location is: %s"), *HitLocation.ToString());
-		
+		GetControlledTank()->AimAt(HitLocation);
+
 		DrawDebugSphere
 		(
 			GetWorld(),
@@ -64,13 +64,13 @@ bool ATankPlayerController_New::GetSightRayHitLocation(FVector& HitLocation) con
 	FVector LookDirection;
 	if (GetLookDirection(ScreenLocation, LookDirection))
 	{
-		// line trace along that direction, and see what is hit (up to a max range)
 		GetLookVectorHitLocation(LookDirection, HitLocation);
 	}
 	
 	return true;
 }
 
+// line trace along that direction, and see what is hit (up to a max range)
 bool ATankPlayerController_New::GetLookVectorHitLocation(FVector LookDirection, FVector& HitLocation) const
 {
 	FHitResult HitResult;
