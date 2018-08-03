@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "Public/Tank.h"
+#include "BattleTank.h"
+#include "Tank.h"
+
 
 
 // Sets default values
@@ -21,6 +23,11 @@ void ATank::BeginPlay()
 	
 }
 
+void ATank::SetBarrelReference(UStaticMeshComponent * BarrelToSet)
+{
+	TankAimingComponent->SetBarrelReference(BarrelToSet);
+}
+
 // Called every frame
 void ATank::Tick(float DeltaTime)
 {
@@ -38,6 +45,4 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 void ATank::AimAt(FVector HitLocation)
 {
 	TankAimingComponent->AimAt(HitLocation);
-	auto OurTankName = GetName();
-	UE_LOG(LogTemp, Warning, TEXT("%s is aming at %s"), *OurTankName, *HitLocation.ToString());
 }

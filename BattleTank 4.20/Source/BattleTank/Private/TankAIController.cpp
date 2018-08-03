@@ -3,6 +3,7 @@
 #include "TankAIController.h"
 #include "Engine/World.h"
 #include "GameFramework/Pawn.h"
+#include "DrawDebugHelpers.h"
 #include "GameFramework/PlayerController.h"
 
 
@@ -46,6 +47,7 @@ void ATankAIController::Tick(float DeltaTime)
 
 }
 
+
 ATank* ATankAIController::GetControlledTank() const
 {
 	return Cast<ATank>(GetPawn());
@@ -53,7 +55,7 @@ ATank* ATankAIController::GetControlledTank() const
 
 ATank* ATankAIController::GetPlayerTank() const
 {
-	auto PlayerPawn = GetWorld()->GetFirstPlayerController();
+	auto PlayerPawn = GetWorld()->GetFirstPlayerController()->GetPawn();
 	if (!PlayerPawn) { return nullptr; }
-	return Cast<ATank>(GetPawn());
+	return Cast<ATank>(PlayerPawn);
 }

@@ -2,12 +2,13 @@
 
 #pragma once
 
-#include "Public/Tank.h"
+#include "Tank.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "GameFramework/PlayerController.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/World.h"
+#include "TankAimingComponent.h"
 #include "TankPlayerController_New.generated.h"
 
 /**
@@ -19,21 +20,19 @@ class BATTLETANK_API ATankPlayerController_New : public APlayerController
 	GENERATED_BODY()
 
 public:
-
 	
-private:
-
-	ATank * GetControlledTank() const;
+	virtual void BeginPlay() override;
 
 	virtual void Tick(float DeltaTime) override;
-
-	void BeginPlay() override;
+		
+private:
+	ATank * GetControlledTank() const;
 
 	void AimTowardsCrosshair();
 
 	// return OUT parameter,  true if hit landscape
-	bool GetSightRayHitLocation(FVector& HitLocation) const;
-
+	bool GetSightRayHitLocation(FVector& OutHitLocation) const;
+	
 	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
 
 	bool GetLookVectorHitLocation(FVector LookDirection, FVector& HitLocation) const;
