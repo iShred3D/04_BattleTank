@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "GameFramework/Actor.h"
 #include "Engine/World.h"
+#include "Components/StaticMeshComponent.h"
 #include "TankAimingComponent.generated.h"
 
 
@@ -24,5 +25,9 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	UTankAimingComponent();
 	void AimAt(FVector HitLocation);
+	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
+
+private:
+	UStaticMeshComponent * Barrel = nullptr;
 	
 };
