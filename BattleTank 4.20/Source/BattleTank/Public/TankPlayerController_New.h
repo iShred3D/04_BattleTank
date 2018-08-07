@@ -2,12 +2,9 @@
 
 #pragma once
 
-#include "Public/Tank.h"
+
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
 #include "GameFramework/PlayerController.h"
-#include "DrawDebugHelpers.h"
-#include "Engine/World.h"
 #include "TankPlayerController_New.generated.h"
 
 /**
@@ -23,7 +20,7 @@ public:
 	
 private:
 
-	ATank * GetControlledTank() const;
+	class ATank * GetControlledTank() const;
 
 	virtual void Tick(float DeltaTime) override;
 

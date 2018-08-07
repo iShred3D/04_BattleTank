@@ -3,11 +3,11 @@
 #pragma once
 
 #include "BattleTank.h"
-#include "GameFramework/Actor.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-#include "TankAimingComponent.h"
 #include "Tank.generated.h"
+
+class UTankBarrel;
 
 UCLASS()
 class BATTLETANK_API ATank : public APawn
@@ -18,10 +18,10 @@ public:
 	void AimAt(FVector HitLocation);
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
+	void SetBarrelReference(class UTankBarrel * BarrelToSet);
 
 protected:
-	UTankAimingComponent* TankAimingComponent = nullptr;
+	class UTankAimingComponent* TankAimingComponent = nullptr;
 
 
 

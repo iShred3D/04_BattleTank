@@ -1,5 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "Engine/World.h"
+#include "DrawDebugHelpers.h"
+#include "Tank.h"
 #include "TankPlayerController_New.h"
 
 void ATankPlayerController_New::BeginPlay()
