@@ -23,7 +23,7 @@ public:
 	// Called every frame
 	UTankAimingComponent();
 	void AimAt(FVector HitLocation, float LaunchSpeed);
-	void SetBarrelReference(class UTankBarrel* BarrelToSet);
+	void SetBarrelReference(UTankBarrel* BarrelToSet);
 
 private:
 	class UTankBarrel * Barrel = nullptr;

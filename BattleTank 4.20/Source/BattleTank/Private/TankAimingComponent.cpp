@@ -17,7 +17,7 @@ UTankAimingComponent::UTankAimingComponent()
 	// ...
 }
 
-void UTankAimingComponent::SetBarrelReference(class UTankBarrel* BarrelToSet)
+void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet)
 {
 	Barrel = BarrelToSet;
 }
@@ -40,14 +40,11 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 				false,
 				0,
 				0,
-				ESuggestProjVelocityTraceOption::DoNotTrace
+				ESuggestProjVelocityTraceOption::DoNotTrace // Parameter must be present to prevent bug
 			) // end SuggestProjectileVelocity
 		)
 	{
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
-		auto TankName = GetOwner()->GetName();
-		auto Time = GetWorld()->GetTimeSeconds();
-		UE_LOG(LogTemp, Warning, TEXT("Aim Solution found at: %f"), Time)
 		MoveBarrelTowards(AimDirection);
 	}
 	else
@@ -63,5 +60,5 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 	auto AimAsRotator = AimDirection.Rotation();
 	auto DeltaRotator = AimAsRotator - BarrelRotator;
 
-		Barrel->Elevate(5);
+		Barrel->Elevate(DeltaRotator.Pitch);
 }
