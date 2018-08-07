@@ -1,10 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+
+#include "TankAimingComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Components/StaticMeshComponent.h"
 #include "Engine/World.h"
 #include "TankBarrel.h"
-#include "TankAimingComponent.h"
+#include "TankTurret.h"
 
 
 // Sets default values for this component's properties
@@ -19,7 +21,14 @@ UTankAimingComponent::UTankAimingComponent()
 
 void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet)
 {
+	if (!BarrelToSet) { return; }
 	Barrel = BarrelToSet;
+}
+
+void UTankAimingComponent::SetTurretReference(UTankTurret* TurretToSet)
+{
+	if (!TurretToSet) { return; }
+	Turret = TurretToSet;
 }
 
 
