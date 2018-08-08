@@ -2,6 +2,7 @@
 
 #include "Projectile.h"
 #include "Engine/World.h"
+#include "GameFramework/Actor.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 
 
