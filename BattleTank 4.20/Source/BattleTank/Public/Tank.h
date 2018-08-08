@@ -50,7 +50,8 @@ private:
 
 	class UTankBarrel* Barrel = nullptr; // Local barrel reference for spawning projectile
 
-	float ReloadTimeInSeconds = 3;
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+		float ReloadTimeInSeconds = 3;
 
 	double LastFireTime = 0;
 };
