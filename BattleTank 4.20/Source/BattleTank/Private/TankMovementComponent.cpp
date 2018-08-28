@@ -26,3 +26,17 @@ void UTankMovementComponent::InitializeComponent(UTankTrack* LeftTrackToSet, UTa
 	RightTrack = RightTrackToSet;
 
 }
+
+void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed)
+{
+	auto TankForward = GetOwner()->GetActorForwardVector().GetSafeNormal();
+	auto AIForwardIntention = MoveVelocity.GetSafeNormal();
+
+	auto RightThrow = FVector::CrossProduct(TankForward, AIForwardIntention).Z;
+
+	auto ForwardThrow = FVector::DotProduct(TankForward, AIForwardIntention);
+	//auto TurnVector = RightThrow.GetSafeNormal().Z;
+	IntendMoveForward(ForwardThrow);
+	IntendTurnRight(RightThrow);
+	//UE_LOG(LogTemp, Warning, TEXT("Cross product is %s"), *TurnString)
+}

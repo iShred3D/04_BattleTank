@@ -20,6 +20,8 @@ public:
 UFUNCTION(BlueprintCallable, Category = Setup)
 	void InitializeComponent(UTankTrack* LeftTrackToSet, UTankTrack* RightTrackToSet);
 
+	virtual void RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed) override;
+
 UFUNCTION(BlueprintCallable, Category = Input)
 	void IntendMoveForward(float Throw);
 
